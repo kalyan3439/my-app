@@ -1,4 +1,4 @@
 #!/bin/bash
 cd my-app
-./gradlew clean build
-./gradlew build 
+chmod +x ./gradlew clean build
+chmod +x ./gradlew build 

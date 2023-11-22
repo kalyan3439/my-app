@@ -2,13 +2,13 @@ resources:
 - name: my-app
   type: git
   source:
-    uri: https://github.com/kalyan3439/javaApplication.git
+    uri: https://github.com/kalyan3439/my-app.git
     branch: master
 
 jobs:
 - name: build-and-test
   plan:
-  - get: https://github.com/kalyan3439/javaApplication.git
+  - get: my-app
     trigger: true
   - task: build
     config:
@@ -17,9 +17,9 @@ jobs:
         type: registry-image
         source: { repository: gradle, tag: latest }
       inputs:
-      - name: https://github.com/kalyan3439/javaApplication.git
+      - name: my-app
       run:
-        path: https://github.com/kalyan3439/javaApplication/build.sh  # Adjust this script name accordingly
+        path: my-app/build.sh  # Adjust this script name accordingly
   - task: test
     config:
       platform: linux
@@ -29,4 +29,4 @@ jobs:
       inputs:
       - name: your-java-app-repo
       run:
-        path: https://github.com/kalyan3439/javaApplication/test.sh  # Adjust this script name accordingly
+        path: my-app/test.sh  # Adjust this script name accordingly

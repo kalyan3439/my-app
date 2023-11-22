@@ -1,0 +1,32 @@
+resources:
+- name: my-app
+  type: git
+  source:
+    uri: https://github.com/kalyan3439/javaApplication.git
+    branch: master
+
+jobs:
+- name: build-and-test
+  plan:
+  - get: https://github.com/kalyan3439/javaApplication.git
+    trigger: true
+  - task: build
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: gradle, tag: latest }
+      inputs:
+      - name: https://github.com/kalyan3439/javaApplication.git
+      run:
+        path: https://github.com/kalyan3439/javaApplication/build.sh  # Adjust this script name accordingly
+  - task: test
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: gradle, tag: latest }
+      inputs:
+      - name: your-java-app-repo
+      run:
+        path: https://github.com/kalyan3439/javaApplication/test.sh  # Adjust this script name accordingly

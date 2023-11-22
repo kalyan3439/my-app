@@ -1,4 +1,4 @@
 #!/bin/bash
-cd javaApplication
+cd my-app
 ./gradlew clean build
 ./gradlew build 
